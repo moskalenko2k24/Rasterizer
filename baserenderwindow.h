@@ -7,13 +7,14 @@
 #define UNICODE
 #endif
 
+#include "ibaserenderwindow.h"
 #include "memoryimage.h"
 #include "point.h"
 #include <windows.h>
 
 namespace sr {
 
-class BaseRenderWindow {
+class BaseRenderWindow: public IBaseRenderWindow {
 protected:
     MemoryImage img;
     const wchar_t* title;
@@ -26,12 +27,12 @@ protected:
     void Show();
 public:
     BaseRenderWindow(const wchar_t *title, int width, int height);
-    void show();
-    void clear(const Color &color);
-    int getWidth() const;
-    int getHeight() const;
-    void setPixel(const Point &point, const Color &color);
-    Color getPixel(const Point &point) const;
+    void show() override;
+    void clear(const Color &color) override;
+    int getWidth() const override;
+    int getHeight() const override;
+    void setPixel(const Point &point, const Color &color) override;
+    Color getPixel(const Point &point) const override;
 };
 
 } // namespace sr

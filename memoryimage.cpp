@@ -10,11 +10,11 @@ namespace sr {
 int MemoryImage::getWidth() const {
     return width;
 }
-    
+
 int MemoryImage::getHeight() const {
     return height;
 }
-    
+
 void MemoryImage::setPixel(int x, int y, const Color &color) {
     //DEBUG_LOG(x);
     //DEBUG_LOG(y);
@@ -31,7 +31,7 @@ void MemoryImage::setPixel(int x, int y, const Color &color) {
     auto c = RGB(color.B, color.G, color.R);
     buffer[y * width + x] = c;
 }
-    
+
 Color MemoryImage::getPixel(int x, int y) const {
     assert(0 <= x && x < width);
     assert(0 <= y && y < height);
@@ -41,16 +41,16 @@ Color MemoryImage::getPixel(int x, int y) const {
     auto b = GetBValue(c);
     return Color(r, g, b);
 }
-    
+
 void MemoryImage::clear(const Color &color) {
     for (int x = 0; x < width; x++)
         for (int y = 0; y < height; y++)
             setPixel(x, y, color);
 }
 
-MemoryImage::MemoryImage(int width, int height): 
-    width(width), height(height), 
-    buffer((COLORREF*)calloc(width * height, sizeof(COLORREF))) 
+MemoryImage::MemoryImage(int width, int height):
+    width(width), height(height),
+    buffer((COLORREF*)calloc(width * height, sizeof(COLORREF)))
     {
         clear(Color::White());
     }
@@ -61,7 +61,7 @@ MemoryImage::MemoryImage(MemoryImage &&img) {
     buffer = img.buffer;
     img.buffer = nullptr;
 }
-    
+
 MemoryImage::~MemoryImage() {
     free(buffer);
 }
