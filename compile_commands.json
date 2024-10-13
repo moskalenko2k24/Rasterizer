@@ -1,0 +1,82 @@
+[
+  {
+    "arguments": [
+      "/usr/bin/x86_64-w64-mingw32-g++",
+      "-c",
+      "-Wall",
+      "-Wextra",
+      "-std=c++20",
+      "-mwindows",
+      "-o",
+      "main",
+      "baserenderwindow.cpp"
+    ],
+    "directory": "/home/andrey/Projects/Rasterizer",
+    "file": "/home/andrey/Projects/Rasterizer/baserenderwindow.cpp",
+    "output": "/home/andrey/Projects/Rasterizer/main"
+  },
+  {
+    "arguments": [
+      "/usr/bin/x86_64-w64-mingw32-g++",
+      "-c",
+      "-Wall",
+      "-Wextra",
+      "-std=c++20",
+      "-mwindows",
+      "-o",
+      "main",
+      "color.cpp"
+    ],
+    "directory": "/home/andrey/Projects/Rasterizer",
+    "file": "/home/andrey/Projects/Rasterizer/color.cpp",
+    "output": "/home/andrey/Projects/Rasterizer/main"
+  },
+  {
+    "arguments": [
+      "/usr/bin/x86_64-w64-mingw32-g++",
+      "-c",
+      "-Wall",
+      "-Wextra",
+      "-std=c++20",
+      "-mwindows",
+      "-o",
+      "main",
+      "main.cpp"
+    ],
+    "directory": "/home/andrey/Projects/Rasterizer",
+    "file": "/home/andrey/Projects/Rasterizer/main.cpp",
+    "output": "/home/andrey/Projects/Rasterizer/main"
+  },
+  {
+    "arguments": [
+      "/usr/bin/x86_64-w64-mingw32-g++",
+      "-c",
+      "-Wall",
+      "-Wextra",
+      "-std=c++20",
+      "-mwindows",
+      "-o",
+      "main",
+      "memoryimage.cpp"
+    ],
+    "directory": "/home/andrey/Projects/Rasterizer",
+    "file": "/home/andrey/Projects/Rasterizer/memoryimage.cpp",
+    "output": "/home/andrey/Projects/Rasterizer/main"
+  },
+  {
+    "arguments": [
+      "/usr/bin/x86_64-w64-mingw32-g++",
+      "-c",
+      "-Wall",
+      "-Wextra",
+      "-std=c++20",
+      "-mwindows",
+      "-o",
+      "main",
+      "renderwindow.cpp"
+    ],
+    "directory": "/home/andrey/Projects/Rasterizer",
+    "file": "/home/andrey/Projects/Rasterizer/renderwindow.cpp",
+    "output": "/home/andrey/Projects/Rasterizer/main"
+  }
+]
