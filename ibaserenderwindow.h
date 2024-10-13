@@ -3,8 +3,8 @@
 #ifndef __IBASERENDERWINDOW_H__
 #define __IBASERENDERWINDOW_H__
 
-#include "color.h"
 #include "point.h"
+#include "color.h"
 
 namespace sr {
 

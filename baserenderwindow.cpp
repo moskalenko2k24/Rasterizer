@@ -1,9 +1,67 @@
 #include "baserenderwindow.h"
-#include "point.h"
-#include <utility>
+#include "loger.h"
+#include <cassert>
 
 namespace sr {
 
+    int MemoryImage::getWidth() const {
+        return width;
+    }
+
+    int MemoryImage::getHeight() const {
+        return height;
+    }
+
+    void MemoryImage::setPixel(int x, int y, const Color &color) {
+        if (!(0 <= x && x < width)) {
+            DEBUG_LOG(x);
+            DEBUG_LOG(y);
+        }
+        if (!(0 <= y && y < height)) {
+            DEBUG_LOG(x);
+            DEBUG_LOG(y);
+        }
+        assert(0 <= x && x < width);
+        assert(0 <= y && y < height);
+        COLORREF c = RGB(color.b, color.g, color.r);
+        buffer[y * width + x] = c;
+    }
+
+    Color MemoryImage::getPixel(int x, int y) const {
+        assert(0 <= x && x < width);
+        assert(0 <= y && y < height);
+        COLORREF c = buffer[y * width + x];
+        int r = static_cast<int>(GetRValue(c));
+        int g = static_cast<int>(GetGValue(c));
+        int b = static_cast<int>(GetBValue(c));
+        return Color(r, g, b);
+    }
+
+    void MemoryImage::clear(const Color &color) {
+        for (int x = 0; x < width; x++)
+            for (int y = 0; y < height; y++)
+                setPixel(x, y, color);
+    }
+
+    MemoryImage::MemoryImage(int width, int height):
+        width(width), height(height),
+        buffer(static_cast<COLORREF*>(
+            calloc(width * height, sizeof(COLORREF))
+        ))
+        {
+            clear(Color::White());
+        }
+
+    MemoryImage::MemoryImage(MemoryImage &&img) {
+        width = img.width;
+        height = img.height;
+        buffer = img.buffer;
+        img.buffer = nullptr;
+    }
+
+    MemoryImage::~MemoryImage() {
+        free(buffer);
+    }
 
 
 LRESULT CALLBACK BaseRenderWindow::WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
@@ -45,7 +103,7 @@ const wchar_t* BaseRenderWindow::ClassName() {
 
 void BaseRenderWindow::Register() {
     WNDCLASS wc = {};
-    
+
     wc.style = CS_HREDRAW | CS_VREDRAW;
     wc.lpfnWndProc   = WndProc;
     wc.hInstance     = hInstance;
@@ -73,7 +131,7 @@ void BaseRenderWindow::Create() {
         // Size and position
         CW_USEDEFAULT, CW_USEDEFAULT, width, height,
 
-        NULL,       // Parent window    
+        NULL,       // Parent window
         NULL,       // Menu
         hInstance,  // Instance handle
         &img        // Additional application data
@@ -93,7 +151,7 @@ void BaseRenderWindow::Show() {
     }
 }
 
-BaseRenderWindow::BaseRenderWindow(const wchar_t *title, int width, int height): 
+BaseRenderWindow::BaseRenderWindow(const wchar_t *title, int width, int height):
     img(width, height), title(title), hInstance(GetModuleHandle(nullptr)) {}
 
 void BaseRenderWindow::show() {

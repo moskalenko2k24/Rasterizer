@@ -4,14 +4,14 @@ namespace sr {
 
 
 
-Color::Color(): R(0), G(0), B(0) {}
+Color::Color(): r(0), g(0), b(0) {}
 
-Color::Color(int r, int g, int b): R(r), G(g), B(b) {}
+Color::Color(int r, int g, int b): r(r), g(g), b(b) {}
 
 bool Color::operator == (const Color& rhs) const {
-    return R == rhs.R && 
-           G == rhs.G && 
-           B == rhs.B;
+    return r == rhs.r &&
+           g == rhs.g &&
+           b == rhs.g;
 }
 
 bool Color::operator != (const Color& rhs) const {

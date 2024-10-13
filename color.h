@@ -4,18 +4,18 @@
 #define __COLOR_H__
 
 namespace sr {
-    
+
 
 struct Color {
-    int R, G, B;
+    int r, g, b;
     Color();
     Color(int r, int g, int b);
-    
+
     bool operator == (const Color& rhs) const;
     bool operator != (const Color& rhs) const;
-    
+
     static Color RGB(int r, int g, int b);
-    
+
     static const Color& White();
     static const Color& Black();
     static const Color& Red();
