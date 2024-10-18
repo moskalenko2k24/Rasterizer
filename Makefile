@@ -8,7 +8,7 @@ CC = x86_64-w64-mingw32-g++
 CFLAGS = -Wall -Wextra -std=c++20 -static-libgcc -static-libstdc++
 
 all:
-	 $(CC) $(CFLAGS) -mwindows *.cpp -o main
+	 $(CC) $(CFLAGS) -mwindows *.cpp algorithms/*.cpp -o main
 
 build: all
 
@@ -19,3 +19,6 @@ clean:
 
 run:
 	wine main.exe
+
+compile_commands:
+	bear -- make
